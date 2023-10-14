@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Player Stats</title>
+</head>
+<body>
+<h1>Player Stats</h1>
+
+<h2>Sorted by Games Played</h2>
+<table>
+  <tr>
+    <th>Player ID</th>
+    <th>Player Name</th>
+    <th>Wins</th>
+    <th>Games Played</th>
+  </tr>
+  <!-- Use Thymeleaf to loop through player statistics and display them -->
+  <tr th:each="player : ${playersByGamesPlayed}">
+    <td th:text="${player.playerId}"></td>
+    <td th:text="${player.playerName}"></td>
+    <td th:text="${player.wins}"></td>
+    <td th:text="${player.gamesPlayed}"></td>
+  </tr>
+</table>
+
+<h2>Sorted by Wins</h2>
+<table>
+  <tr>
+    <th>Player ID</th>
+    <th>Player Name</th>
+    <th>Wins</th>
+    <th>Games Played</th>
+  </tr>
+  <!-- Use Thymeleaf to loop through player statistics and display them -->
+  <tr th:each="player : ${playersByWins}">
+    <td th:text="${player.playerId}"></td>
+    <td th:text="${player.playerName}"></td>
+    <td th:text="${player.wins}"></td>
+    <td th:text="${player.gamesPlayed}"></td>
+  </tr>
+</table>
+</body>
+</html>
+

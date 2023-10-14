@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Game Results</title>
+</head>
+<body>
+<h1>Game Results</h1>
+<table>
+  <tr>
+    <th>Game ID</th>
+    <th>Game Date</th>
+    <th>Winner 1</th>
+    <th>Winner 2</th>
+    <th>Loser 1</th>
+    <th>Loser 2</th>
+    <th>WinPoint</th>
+    <th>LosePoint</th>
+  </tr>
+  <!-- Use Thymeleaf to loop through game results and display them -->
+  <tr th:each="game : ${games}">
+    <td th:text="${game.id}"></td>
+    <td th:text="${game.gameDate}"></td>
+    <td th:text="${game.winner1}"></td>
+    <td th:text="${game.winner2}"></td>
+    <td th:text="${game.loser1}"></td>
+    <td th:text="${game.loser2}"></td>
+    <td th:text="${game.winpoint}"></td>
+    <td th:text="${game.losepoint}"></td>
+  </tr>
+</table>
+
+<h2>Delete Game Result</h2>
+<form action="/games/delete" method="post">
+  <label for="gameId">Game ID:</label>
+  <input type="text" id="gameId" name="gameId" required>
+  <input type="submit" value="Delete">
+</form>
+
+</body>
+</html>
