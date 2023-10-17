@@ -31,7 +31,7 @@
     <th>Player ID</th>
     <th>Player Name</th>
     <th>Wins</th>
-    <th>Games Played</th>
+    <th>Games</th>
   </tr>
   <!-- Use Thymeleaf to loop through player statistics and display them -->
   <tr th:each="player : ${playersByWins}">
@@ -39,6 +39,25 @@
     <td th:text="${player.playerName}"></td>
     <td th:text="${player.wins}"></td>
     <td th:text="${player.gamesPlayed}"></td>
+  </tr>
+</table>
+
+<h2>GPL Ranking</h2>
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Name</th>
+    <th>Wins</th>
+    <th>Games</th>
+    <th>GPL</th>
+  </tr>
+  <!-- Use Thymeleaf to loop through player statistics and display them -->
+  <tr th:each="player, playerStat : ${playersByGPL}">
+    <td th:text="${playerStat.index + 1}"></td> <!-- 순위 계산 -->
+    <td th:text="${player.playerName}"></td>
+    <td th:text="${player.wins}"></td>
+    <td th:text="${player.gamesPlayed}"></td>
+    <td th:text="${player.gpl}"></td>
   </tr>
 </table>
 </body>
