@@ -7,11 +7,8 @@ import java.util.Optional;
 
 public interface PlayerRepository extends JpaRepository<Player, Long>{
     public Optional<Player> findByPlayerName(String player) ;
-
     public void deleteAll();
     List<Player> findAllByOrderByGamesPlayedDesc();
     List<Player> findAllByOrderByWinsDesc();
-
-
-
+    List<Player> findAllByOrderByGplDesc();
 }

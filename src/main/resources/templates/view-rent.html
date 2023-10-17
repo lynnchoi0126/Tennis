@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View All Rents</title>
+</head>
+<body>
+<h1>Rents</h1>
+<table>
+  <tr>
+    <th>RentId</th>
+    <th>Date</th>
+    <th>RacquetNo</th>
+    <th>Name</th>
+    <th>Type</th>
+  </tr>
+  <!-- Use Thymeleaf to loop through game results and display them -->
+  <tr th:each="rent : ${rents}">
+    <td th:text="${rent.id}"></td>
+    <td th:text="${rent.date}"></td>
+    <td th:text="${rent.racquetNo}"></td>
+    <td th:text="${rent.name}"></td>
+    <td th:text="${rent.rentOrReturn}"></td>
+  </tr>
+</table>
+
+</body>
+</html>

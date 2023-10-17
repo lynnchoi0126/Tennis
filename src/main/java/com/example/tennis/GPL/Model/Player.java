@@ -23,5 +23,7 @@ public class Player {
     @Getter @Setter
     @Column(name = "games_played")
     private int gamesPlayed;
-
+    @Getter @Setter
+    @Column(name = "GPL")
+    private int gpl;
 }

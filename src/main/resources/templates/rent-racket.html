@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racket Rental Form</title>
+</head>
+<body>
+
+<h1>Racket Rental Form</h1>
+
+<form action="/racquet/rent" method="post">
+  <label for="date">Rental Date:</label>
+  <input type="date" id="date" name="date" required><br><br>
+
+  <label for="racquetNo">Racket Number:</label>
+  <input type="text" id="racquetNo" name="racquetNo" required><br><br>
+
+  <label for="name">Renter Name:</label>
+  <input type="text" id="name" name="name" required><br><br>
+
+  <label>Rental Status:</label>
+  <input type="radio" id="rentalStatusRent" name="rentOrReturn" value="true" required>
+  <label for="rentalStatusRent">Rent</label>
+  <input type="radio" id="rentalStatusReturn" name="rentOrReturn" value="false">
+  <label for="rentalStatusReturn">Return</label><br><br>
+
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

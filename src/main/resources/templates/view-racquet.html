@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View All Racquets</title>
+</head>
+<body>
+<h1>Racquets</h1>
+<table>
+  <tr>
+    <th>RacquetNo</th>
+    <th>RacquetName</th>
+    <th>OnRent</th>
+  </tr>
+  <!-- Use Thymeleaf to loop through game results and display them -->
+  <tr th:each="racquet : ${racquets}">
+    <td th:text="${racquet.racquetNo}"></td>
+    <td th:text="${racquet.racquetName}"></td>
+    <td th:text="${racquet.onRent}"></td>
+  </tr>
+</table>
+
+</body>
+</html>

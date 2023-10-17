@@ -37,6 +37,21 @@ public class GameService {
 
         // Update loser2
         updatePlayerStats(doubleGame.getLoser2(), false);
+
+        updatePlayerGPL(doubleGame.getWinner1(), doubleGame.getWinner2());
+        updatePlayerGPL(doubleGame.getLoser1(), doubleGame.getLoser2());
+
+        // Update GPL
+
+    }
+
+    private boolean PartnerFirstTime(String player1, String player2){
+        List<DoubleGame> player1Games = doubleGameRepository.findByWinner1AndWinner2(player1, player2);
+        List<DoubleGame> player2Games = doubleGameRepository.findByWinner1AndWinner2(player2, player1);
+        List<DoubleGame> player3Games = doubleGameRepository.findByLoser1AndLoser2(player2, player1);
+        List<DoubleGame> player4Games = doubleGameRepository.findByLoser1AndLoser2(player1, player2);
+
+        return player1Games.size() + player2Games.size() + player3Games.size() + player4Games.size() == 1;
     }
 
     @Transactional
@@ -59,12 +74,29 @@ public class GameService {
     }
 
     @Transactional
+    public void updatePlayerGPL(String name1, String name2){
+        Optional<Player> optionalPlayer1 =  playerRepository.findByPlayerName(name1);
+        Optional<Player> optionalPlayer2 = playerRepository.findByPlayerName(name2);
+        Player player1 = optionalPlayer1.get();
+        Player player2 = optionalPlayer2.get();
+
+        if(PartnerFirstTime(name1, name2)){
+                player1.setGpl(player1.getGpl() + 1);
+                player2.setGpl(player2.getGpl() + 1);
+
+                playerRepository.save(player1);
+                playerRepository.save(player2);
+        }
+    }
+
+    @Transactional
     public void deletePlayerStats(String playerName, boolean isWinner){
         Optional<Player> optionalPlayer = playerRepository.findByPlayerName(playerName);
         Player player;
         if (optionalPlayer.isPresent()) {
             player = optionalPlayer.get();
             player.setGamesPlayed(player.getGamesPlayed() - 1);
+            player.setGpl(player.getGpl() - 1);
             if(isWinner) player.setWins(player.getWins() - 1);
             playerRepository.save(player);
         }
@@ -110,4 +142,7 @@ public class GameService {
         }
     }
 
+    public List<Player> getAllPlayersByGPL() {
+        return playerRepository.findAllByOrderByGplDesc();
+    }
 }

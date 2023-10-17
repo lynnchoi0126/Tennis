@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racket Registration Form</title>
+</head>
+<body>
+
+<h1>Racket Registration Form</h1>
+
+<form action="/rackets/register" method="post" th:object="${racket}">
+  <label for="racketNumber">Racket Number:</label>
+  <input type="text" id="racketNumber" name="racketNumber" required><br><br>
+
+  <label for="racketName">Racket Name:</label>
+  <input type="text" id="racketName" name="racketName" required><br><br>
+
+  <input type="submit" value="Register">
+</form>
+
+</body>
+</html>

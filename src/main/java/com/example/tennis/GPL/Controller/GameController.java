@@ -39,7 +39,7 @@ public class GameController {
         doubleGame.setLosepoint(gameForm.getLosepoint());
         gameService.saveGameResult(doubleGame);
 
-        return "redirect:/games/view-results";
+        return "redirect:/games/record";
     }
 
     @GetMapping("/search")
@@ -57,19 +57,39 @@ public class GameController {
         return "view-results";
     }
 
-    @GetMapping("/view-stats/games-played")
-    public String viewPlayerStatsByGamesPlayed(Model model) {
-        List<Player> players = gameService.getAllPlayersByGamesPlayed();
-        model.addAttribute("playersByGamesPlayed", players);
+    @GetMapping("/view-stats/gpl")
+    public String viewPlayers(Model model) {
+        List<Player> playersByGamesPlayed = gameService.getAllPlayersByGamesPlayed();
+        List<Player> playersByWins = gameService.getAllPlayersByWins();
+        List<Player> playersByGPL = gameService.getAllPlayersByGPL();
+
+        model.addAttribute("playersByGamesPlayed", playersByGamesPlayed);
+        model.addAttribute("playersByWins", playersByWins);
+        model.addAttribute("playersByGPL", playersByGPL);
+
         return "view-stats";
     }
 
-    @GetMapping("/view-stats/wins")
-    public String viewPlayerStatsByWins(Model model) {
-        List<Player> players = gameService.getAllPlayersByWins();
-        model.addAttribute("playersByWins", players);
-        return "view-stats";
-    }
+//    @GetMapping("/view-stats/games-played")
+//    public String viewPlayerStatsByGamesPlayed(Model model) {
+//        List<Player> players = gameService.getAllPlayersByGamesPlayed();
+//        model.addAttribute("playersByGamesPlayed", players);
+//        return "view-stats";
+//    }
+//
+//    @GetMapping("/view-stats/gpl")
+//    public String viewPlayerStatsByGPl(Model model) {
+//        List<Player> players = gameService.getAllPlayersByGPL();
+//        model.addAttribute("GPL Ranking", players);
+//        return "view-stats";
+//    }
+//
+//    @GetMapping("/view-stats/wins")
+//    public String viewPlayerStatsByWins(Model model) {
+//        List<Player> players = gameService.getAllPlayersByWins();
+//        model.addAttribute("playersByWins", players);
+//        return "view-stats";
+//    }
 
     @DeleteMapping("/deleteall")
     public ResponseEntity<String> deleteAll() {
