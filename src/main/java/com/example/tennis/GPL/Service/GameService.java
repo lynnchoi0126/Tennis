@@ -13,14 +13,12 @@ import java.util.Optional;
 
 @Service
 public class GameService {
-    private final GPLRepository doubleGameRepository;
 
-    private final PlayerRepository playerRepository;
+    @Autowired
+    private GPLRepository doubleGameRepository;
+    @Autowired
+    private PlayerRepository playerRepository;
 
-    public GameService(GPLRepository doubleGameRepository, PlayerRepository playerRepository) {
-        this.doubleGameRepository = doubleGameRepository;
-        this.playerRepository = playerRepository;
-    }
 
     @Transactional
     public void saveGameResult(DoubleGame doubleGame) {

@@ -15,12 +15,8 @@ import java.util.List;
 @RequestMapping("/games")
 public class GameController {
 
-    private GameService gameService;
-
     @Autowired
-    public GameController(GameService gameService) {
-        this.gameService = gameService;
-    }
+    private GameService gameService;
 
     @GetMapping("/record")
     public String recordForm() {
@@ -39,7 +35,7 @@ public class GameController {
         doubleGame.setLosepoint(gameForm.getLosepoint());
         gameService.saveGameResult(doubleGame);
 
-        return "redirect:/games/record";
+        return "redirect:/";
     }
 
     @GetMapping("/search")
